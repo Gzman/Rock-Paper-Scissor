@@ -1,11 +1,11 @@
 
 const Rock = "rock";
-const Scissors = "scissors";
 const Paper = "paper";
+const Scissors = "scissors";
 
 const isValidInput = (input="") => {
     input = input.toLowerCase();
-    return input === Rock || input === Scissors || input === Paper;
+    return input === Rock || input === Paper || input === Scissors;
 }
 
 const getUserSelection = () => {
@@ -20,20 +20,20 @@ const computerPlay = () => {
     const selection = Math.floor(Math.random() * (maxOptions - minOptions + 1)) + minOptions;
     switch (selection) {
         case 1: return Rock;
-        case 2: return Scissors;
-        case 3: return Paper;
+        case 2: return Paper;
+        case 3: return Scissors;
     }
 }
 
 const playRound = (playerSelection, computerSelection) => {
     if (playerSelection === computerSelection)  return   `Draw! ${playerSelection} == ${computerSelection}`;
-    let winMsg = `You won!  ${playerSelection} beats ${computerSelection}`;
-    let losMsg = `You lost! ${computerSelection} beats ${playerSelection}`;
+    let win = `You won! ${playerSelection} beats ${computerSelection}`;
     switch (playerSelection) {
-        case Rock:      if (computerSelection == Scissors)  return winMsg; else return losMsg;
-        case Scissors:  if (computerSelection == Paper)     return winMsg; else return losMsg;
-        case Paper:     if (computerSelection == Rock)      return winMsg; else return losMsg;
+        case Rock:      if (computerSelection === Scissors)  return win; break;
+        case Paper:     if (computerSelection === Rock)      return win; break;
+        case Scissors:  if (computerSelection === Paper)     return win; break;
     }
+    return `You lost! ${computerSelection} beats ${playerSelection}`;
 }
 
 const playerSelection = getUserSelection();
