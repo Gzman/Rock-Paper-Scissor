@@ -10,7 +10,7 @@ const isValid = (input = "") => {
 
 const userPlay = () => {
     let selection = prompt("Rock, Paper or Scissors");
-    while (selection !== null && !isValid(selection)) selection = prompt("Try again: Rock, Paper or Scissors");
+    while (selection !== null && !isValid(selection)) selection = prompt("Try again [Rock, Paper or Scissors]");
     return selection === null ? selection : String(selection).toLowerCase();
 }
 
@@ -35,16 +35,26 @@ const hasWon = (playerSelection, computerSelection) =>
 const isDraw = (playerSelection, computerSelection) => playerSelection === computerSelection;
 
 const playRound = (playerSelection, computerSelection) => {
-    if (hasCanceled(playerSelection))                return "Canceled the game";
+    if (hasCanceled(playerSelection))                return null;
     if (isDraw(playerSelection, computerSelection))  return `Draw! ${playerSelection} === ${computerSelection}`;
     if (hasWon(playerSelection, computerSelection))  return `You won! ${playerSelection} beats ${computerSelection}`;
     return `You lost! ${computerSelection} beats ${playerSelection}`;
 }
 
-const playerSelection = userPlay();
-const computerSelection = computerPlay();
+const game = (rounds) => {
+    for (let r = 0; r < rounds; r++) {
+        const playerSelection = userPlay();
+        const computerSelection = computerPlay();
+        const outcome = playRound(playerSelection, computerSelection);
+        if (outcome === null) {
+            console.log("Game canceled");
+            return;
+        }
+        console.log(outcome);
+    }
+}
 
-console.log(playRound(playerSelection, computerSelection));
+game(3);
 
 
 
