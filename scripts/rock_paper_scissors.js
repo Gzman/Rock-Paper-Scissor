@@ -3,15 +3,15 @@ const Rock = "rock";
 const Paper = "paper";
 const Scissors = "scissors";
 
-const isValidInput = (input="") => {
+const isValid = (input = "") => {
     input = input.toLowerCase();
     return input === Rock || input === Paper || input === Scissors;
 }
 
-const getUserSelection = () => {
-    let selection = prompt("Select: Rock, Paper or Scissors");
-    while (!isValidInput(selection)) selection = prompt("Try again: Rock, Paper or Scissors");
-    return String(selection).toLowerCase();
+const userPlay = () => {
+    let selection = prompt("Rock, Paper or Scissors");
+    while (selection !== null && !isValid(selection)) selection = prompt("Try again: Rock, Paper or Scissors");
+    return selection === null ? selection : String(selection).toLowerCase();
 }
 
 const computerPlay = () => {
@@ -25,18 +25,23 @@ const computerPlay = () => {
     }
 }
 
+const hasCanceled = (playerSelection) => playerSelection === null;
+
+const hasWon = (playerSelection, computerSelection) =>
+    (playerSelection == Rock     && computerSelection == Scissors) ||
+    (playerSelection == Paper    && computerSelection == Rock) ||
+    (playerSelection == Scissors && computerSelection == Paper);
+
+const isDraw = (playerSelection, computerSelection) => playerSelection === computerSelection;
+
 const playRound = (playerSelection, computerSelection) => {
-    if (playerSelection === computerSelection)  return   `Draw! ${playerSelection} == ${computerSelection}`;
-    let win = `You won! ${playerSelection} beats ${computerSelection}`;
-    switch (playerSelection) {
-        case Rock:      if (computerSelection === Scissors)  return win; break;
-        case Paper:     if (computerSelection === Rock)      return win; break;
-        case Scissors:  if (computerSelection === Paper)     return win; break;
-    }
+    if (hasCanceled(playerSelection))                return "Canceled the game";
+    if (isDraw(playerSelection, computerSelection))  return `Draw! ${playerSelection} === ${computerSelection}`;
+    if (hasWon(playerSelection, computerSelection))  return `You won! ${playerSelection} beats ${computerSelection}`;
     return `You lost! ${computerSelection} beats ${playerSelection}`;
 }
 
-const playerSelection = getUserSelection();
+const playerSelection = userPlay();
 const computerSelection = computerPlay();
 
 console.log(playRound(playerSelection, computerSelection));
