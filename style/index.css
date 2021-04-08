@@ -1,0 +1,71 @@
+/* CSS - Reset */
+html,
+body,
+div,
+em,
+img,
+form,
+label,
+footer,
+header,
+menu,
+nav {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+html {
+    font-size: 14px;
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5rem 0rem;
+}
+
+h1 {
+    border-bottom: 0.5rem solid rebeccapurple;
+}
+
+.selection {
+    display: flex;
+    align-items: center;
+    gap: 5rem 5rem;
+}
+
+.btn {
+    width: 12.5vw;
+    height: 12.5vh;
+    font-size: 2rem;
+    border: 0.75rem solid gray;
+}
+
+.btn:hover {
+    border: 0.75rem solid rebeccapurple;
+}
+
+.btn-presses {
+    transform: scale(1.2);
+}
+
+.result {
+    font-size: 1.5 rem;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.result ul {
+    color: rebeccapurple;
+    list-style-type: none;
+}

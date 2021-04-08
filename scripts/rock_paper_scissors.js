@@ -1,17 +1,17 @@
 
-const Rock = "rock";
-const Paper = "paper";
-const Scissors = "scissors";
+const ROCK = "rock";
+const PAPER = "paper";
+const SCISSORS = "scissors";
 
 const isValid = (input = "") => {
     input = input.toLowerCase();
-    return input === Rock || input === Paper || input === Scissors;
+    return input === ROCK || input === PAPER || input === SCISSORS;
 }
 
-const userPlay = () => {
-    let selection = prompt("Rock, Paper or Scissors");
-    while (selection !== null && !isValid(selection)) selection = prompt("Try again [Rock, Paper or Scissors]");
-    return selection === null ? selection : String(selection).toLowerCase();
+const userPlay = (e) => {
+    const btn = e.target;
+    const selection = btn.getAttribute("data-selection");
+    game(selection);
 }
 
 const computerPlay = () => {
@@ -19,18 +19,18 @@ const computerPlay = () => {
     const maxOptions = 3;
     const selection = Math.floor(Math.random() * (maxOptions - minOptions + 1)) + minOptions;
     switch (selection) {
-        case 1: return Rock;
-        case 2: return Paper;
-        case 3: return Scissors;
+        case 1: return ROCK;
+        case 2: return PAPER;
+        case 3: return SCISSORS;
     }
 }
 
 const hasCanceled = (playerSelection) => playerSelection === null;
 
 const hasWon = (playerSelection, computerSelection) =>
-    (playerSelection == Rock     && computerSelection == Scissors) ||
-    (playerSelection == Paper    && computerSelection == Rock) ||
-    (playerSelection == Scissors && computerSelection == Paper);
+    (playerSelection == ROCK     && computerSelection == SCISSORS) ||
+    (playerSelection == PAPER    && computerSelection == ROCK) ||
+    (playerSelection == SCISSORS && computerSelection == PAPER);
 
 const isDraw = (playerSelection, computerSelection) => playerSelection === computerSelection;
 
@@ -41,20 +41,20 @@ const playRound = (playerSelection, computerSelection) => {
     return `You lost! ${computerSelection} beats ${playerSelection}`;
 }
 
-const game = (rounds) => {
-    for (let r = 0; r < rounds; r++) {
-        const playerSelection = userPlay();
+const game = (userSelection) => {
+        const playerSelection = userSelection;
         const computerSelection = computerPlay();
         const outcome = playRound(playerSelection, computerSelection);
-        if (outcome === null) {
-            console.log("Game canceled");
-            return;
-        }
-        console.log(outcome);
-    }
+        const resultList = document.querySelector(".result ul");
+        const result = document.createElement("li");
+        result.textContent = outcome;
+        resultList.append(result);
 }
 
-game(3);
+const btns = document.querySelectorAll(".btn");
+btns.forEach((btn) => {
+    btn.addEventListener("click", userPlay);
+});
 
 
 
