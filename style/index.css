@@ -57,6 +57,7 @@ h1 {
   background-color: lavender;
   border: 0rem solid lavender;
   border-radius: 5%;
+  box-shadow: 0rem 0rem 0.3rem grey;
 }
 
 .player {
@@ -119,6 +120,7 @@ h1 {
   background-color: lightgray;
   border: 0rem solid lightgray;
   border-radius: 8rem;
+  box-shadow: 0rem 0rem 0.3rem grey;
 }
 
 button {
