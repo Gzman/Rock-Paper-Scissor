@@ -1,5 +1,4 @@
 
-
 const SELECTIONS = ["rock", "paper", "scissors"];
 const ROCK = SELECTIONS[0];
 const PAPER = SELECTIONS[1];
