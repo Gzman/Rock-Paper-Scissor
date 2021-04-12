@@ -1,25 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
-    <link rel="stylesheet" type="text/css" href="style/index.css">
-</head>
-<body>
+    <link rel="stylesheet" type="text/css" href="style/index.css" />
+  </head>
+  <body>
     <h1>Rock Paper Scissors</h1>
-    <div class="selection">
-        <button data-selection="rock" class="btn">Rock</button>
-        <button data-selection="paper" class="btn">Paper</button>
-        <button data-selection="scissors" class="btn">Scissors</button>
+    <div class="outcome-container">
+      <div class="player">
+        <h2>Player</h2>
+        <h2 class="player-points">0</h2>
+        <button class="player-selection"></button>
+      </div>
+      <h2 class="outcome">vs</h2>
+      <div class="computer">
+        <h2>Computer</h2>
+        <h2 class="computer-points">0</h2>
+        <button class="computer-selection"></button>
+      </div>
     </div>
-    <div class="result">
-        <h3>Results: </h3>
-        <ul>
-
-        </ul>
+    <div>
+      <h2 class="choose">Choose</h2>
+      <div class="selections">
+        <button data-selection="rock" class="selection-button rock"></button>
+        <button data-selection="paper" class="selection-button paper"></button>
+        <button data-selection="scissors" class="selection-button scissors"></button>
+      </div>
     </div>
     <script src="scripts/rock_paper_scissors.js"></script>
-</body>
+  </body>
 </html>
